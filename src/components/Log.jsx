@@ -12,7 +12,7 @@ import { NavLink } from "react-router-dom";
 export const Log = () => {
   return (
     <div className="bg-[#86daa8] flex flex-row justify-center w-full h-[100vh]">
-      <div className="bg-variable-collection-light-green w-[1512px] h-[982px] relative">
+      <div className="bg-variable-collection-light-green w-[1513px] h-[982px] relative">
         <div className="absolute w-[585px] h-[690px] top-[146px] left-[140px] bg-white rounded-[30px] shadow-[0px_1px_3px_#0000001a]">
           {/* <img
             className="absolute w-[37px] h-1.5 top-[162px] left-[62px]"
