@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { useNavigate } from "react-router-dom"; // Import useNavigate from react-router-dom
+import { useNavigate } from "react-router-dom";
 
 // Validation Schema
 const SignupSchema = Yup.object().shape({
@@ -11,142 +11,120 @@ const SignupSchema = Yup.object().shape({
 });
 
 export const SignUp = () => {
-  const navigate = useNavigate(); // Initialize the navigate function
-
-  const handleSignup = (values, { setSubmitting, setErrors }) => {
-    // Send the form data to the server
-    fetch("https://petapp-backend-abg7.onrender.com/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(values), // Send form data as JSON
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Signup failed. Please try again.");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log("Signup successful:", data);
-
-        // Store only the email in localStorage
-        localStorage.setItem("email", values.email);
-
-        // Redirect to the login page upon success
-        navigate("/login"); // Redirect to the login page
-      })
-      .catch((error) => {
-        console.error("Error during signup:", error);
-        setErrors({ password: error.message || "Signup failed. Please try again." });
-      })
-      .finally(() => setSubmitting(false));
-  };
+  const navigate = useNavigate();
 
   return (
-    <div className="flex h-screen bg-green-200">
-      {/* Left Section */}
-      <div className="w-1/2 flex items-center justify-center">
-        <Formik
-          initialValues={{ username: "", email: "", password: "" }}
-          validationSchema={SignupSchema}
-          onSubmit={handleSignup}
-        >
-          {({ errors, touched, isSubmitting }) => (
-            <Form className="bg-white p-8 rounded-lg shadow-lg w-3/4">
-              <div className="text-center mb-6">
-                <h1 className="text-2xl font-bold text-gray-800">PetPal</h1>
-                <p className="text-gray-600">Sign Up</p>
-              </div>
-
-              {/* Username Field */}
-              <div className="mb-4">
-                <label
-                  htmlFor="username"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Username
-                </label>
-                <Field
-                  name="username"
-                  type="text"
-                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+    <Formik
+      initialValues={{ username: "", email: "", password: "" }}
+      validationSchema={SignupSchema}
+      onSubmit={(values, { setSubmitting, setErrors }) => {
+        fetch("https://petapp-backend-abg7.onrender.com/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Signup failed. Please try again.");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log("Signup successful:", data);
+            localStorage.setItem("email", values.email);
+            navigate("/login");
+          })
+          .catch((error) => {
+            console.error("Error during signup:", error);
+            setErrors({
+              password: error.message || "Signup failed. Please try again.",
+            });
+          })
+          .finally(() => setSubmitting(false));
+      }}
+    >
+      {({ isSubmitting }) => (
+        <Form>
+          <div className="bg-[#86daa8] flex flex-row justify-center w-full h-[100vh]">
+            <div className="bg-variable-collection-light-green w-[1512px] h-[982px] relative">
+              <div className="absolute w-[585px] h-[690px] top-[146px] left-[140px] bg-white rounded-[30px] shadow-[0px_1px_3px_#0000001a]">
+                <div className="absolute w-[131px] h-[67px] top-[459px] left-20 bg-[#f7f7f7] rounded-[10px]"></div>
+                <div className="absolute w-[136px] h-[71px] top-[457px] left-[232px] bg-[#f7f7f7] rounded-[10px]"></div>
+                <div className="absolute w-[137px] h-[71px] top-[457px] left-[383px] bg-[#f7f7f7] rounded-[10px]"></div>
+                <div className="absolute w-[466px] h-[45px] top-48 left-14">
+                  <Field
+                    name="username"
+                    className="w-[464px] h-[45px] bg-greyish rounded-lg border border-solid border-dark-grey p-3 text-sm text-[#90a0b7] font-semibold"
+                    placeholder="Name/ Nickname"
+                  />
+                </div>
+                <div className="absolute w-[466px] h-[45px] top-[261px] left-14">
+                  <Field
+                    name="email"
+                    type="email"
+                    className="w-[464px] h-[45px] bg-greyish rounded-lg border border-solid border-dark-grey p-3 text-sm text-[#90a0b7] font-semibold"
+                    placeholder="Email address / Phone No. / Username"
+                  />
+                </div>
+                <div className="absolute w-[466px] h-[45px] top-[322px] left-14">
+                  <Field
+                    name="password"
+                    type="password"
+                    className="w-[464px] h-[45px] bg-greyish rounded-lg border border-solid border-dark-grey p-3 text-sm text-[#90a0b7] font-semibold"
+                    placeholder="Password"
+                  />
+                </div>
+                <div className="absolute top-[405px] left-20 font-normal text-variable-collection-primary-color text-base">
+                  Or continue with
+                </div>
+                <button className='absolute w-[131px] h-[67px] top-[461px] left-20 bg-[#f7f7f7] rounded-[10px]'>
+                <img
+                  className='absolute w-[45px] h-[39px] top-3.5 left-[46px]'
+                  alt='Flat color icons'
+                  src='/icongoogle.png'
                 />
-                {errors.username && touched.username ? (
-                  <div className="text-red-500 text-sm">{errors.username}</div>
-                ) : null}
-              </div>
-
-              {/* Email Field */}
-              <div className="mb-4">
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Email address
-                </label>
-                <Field
-                  name="email"
-                  type="text"
-                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                />
-                {errors.email && touched.email ? (
-                  <div className="text-red-500 text-sm">{errors.email}</div>
-                ) : null}
-              </div>
-
-              {/* Password Field */}
-              <div className="mb-4">
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Password
-                </label>
-                <Field
-                  name="password"
-                  type="password"
-                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                />
-                {errors.password && touched.password ? (
-                  <div className="text-red-500 text-sm">{errors.password}</div>
-                ) : null}
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200"
-              >
-                {isSubmitting ? "Creating account..." : "Create account"}
               </button>
 
-              <div className="my-4 text-center text-gray-500">Or continue with</div>
-              <div className="flex justify-center space-x-4 mb-4">
-                <button className="bg-gray-100 p-2 rounded-full">
-                  <img src="/path-to-google-logo.svg" alt="Google" />
-                </button>
-                <button className="bg-gray-100 p-2 rounded-full">
-                  <img src="/path-to-facebook-logo.svg" alt="Facebook" />
-                </button>
-                <button className="bg-gray-100 p-2 rounded-full">
-                  <img src="/path-to-apple-logo.svg" alt="Apple" />
-                </button>
-              </div>
-            </Form>
-          )}
-        </Formik>
-      </div>
+              <button className='absolute w-[136px] h-[71px] top-[457px] left-[232px] bg-[#f7f7f7] rounded-[10px]'>
+                <img
+                  className='absolute w-[46px] h-[38px] top-[21px] left-[45px]'
+                  alt='Logos meta icon'
+                  src='/iconmeta.png'
+                />
+              </button>
 
-      {/* Right Section */}
-      <div className="w-1/2 bg-blue-300 flex items-center justify-center">
-        <img
-          src="/path-to-cat-image.jpg"
-          alt="Cat"
-          className="w-2/3 rounded-lg shadow-lg"
-        />
-      </div>
-    </div>
+              <button className='absolute w-[137px] h-[71px] top-[457px] left-[383px] bg-[#f7f7f7] rounded-[10px]'>
+                <img
+                  className='absolute w-[40px] h-[40px] top-4 left-[51px]'
+                  alt='Devicon apple'
+                  src='/iconapple.png'
+                />
+              </button>
+
+                <div className="absolute w-[314px] h-[62px] top-[575px] left-[136px]">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-[312px] h-[62px] bg-[#39628e] rounded-lg text-white text-2xl"
+                  >
+                    <a href="/login">Create account</a>
+                  </button>
+                </div>
+                <div className="absolute top-[126px] left-14 font-semibold text-variable-collection-primary-color text-2xl">
+                  Sign Up
+                </div>
+              </div>
+              <img
+                className="absolute w-[597px] h-[903px] top-[35px] left-[871px] rounded-lg"
+                alt="Rectangle"
+                src="/sign.png"
+              />
+            </div>
+          </div>
+        </Form>
+      )}
+    </Formik>
   );
 };

@@ -1,0 +1,51 @@
+.post {
+    background-color: #ffffff; /* White background for the post */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 15px; /* Padding inside the post */
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    margin-bottom: 20px; /* Space between posts */
+    transition: transform 0.2s; /* Smooth hover effect */
+}
+
+.post:hover {
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.post-title {
+    font-size: 20px; /* Font size for the title */
+    color: #333; /* Dark text color for titles */
+    margin: 0 0 10px; /* Space below the title */
+}
+
+.post-description {
+    font-size: 16px; /* Font size for the description */
+    color: #555; /* Lighter color for description text */
+    margin: 0 0 15px; /* Space below the description */
+}
+
+.post-image {
+    max-width: 100%; /* Responsive image */
+    border-radius: 4px; /* Slightly rounded corners for images */
+    margin-bottom: 10px; /* Space below the image */
+}
+
+.post-footer {
+    display: flex; /* Flexbox for footer layout */
+    justify-content: space-between; /* Space between likes and button */
+    align-items: center; /* Center vertically */
+}
+
+.like-button {
+    background-color: #007bff; /* Primary button color */
+    color: white; /* White text */
+    padding: 8px 12px; /* Padding for the button */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.like-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
