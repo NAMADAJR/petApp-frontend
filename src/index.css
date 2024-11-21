@@ -5,8 +5,8 @@
 /* Community */
 :root {
   --dark-grey: rgba(179, 179, 179, 1);
-  --variable-collection-faded-blue: rgba(207, 226, 230, 1);
-  --variable-collection-light-green: rgba(134, 218, 168, 1);
+  --variable-collection-faded-blue: rgba(56, 97, 141, 1);
+  --variable-collection-light-green:rgba(56, 97, 141, 1);
   --variable-collection-primary-color: rgba(56, 97, 141, 1);
   --white: rgba(255, 255, 255, 1);
 }
@@ -218,4 +218,46 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+/* Default Light Mode Styles */
+
+
+.settings-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: rgba(56, 97, 141, 1);
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.dark-mode .settings-container {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+
+.dark-mode .settings-option button {
+  background-color: rgba(56, 97, 141, 1);
+  color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+.dark-mode .settings-option button:hover {
+  background-color: rgba(40, 70, 100, 1);
+}
+
+.dark-mode .logout-button {
+  background-color: #e53935;
+}
+
+.dark-mode .logout-button:hover {
+  background-color: #b71c1c;
 }

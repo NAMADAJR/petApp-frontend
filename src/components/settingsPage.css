@@ -1,0 +1,112 @@
+.settings-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: rgba(56, 97, 141, 1);
+  }
+  
+  .settings-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgba(56, 97, 141, 1);
+  }
+  
+  .settings-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  .settings-label {
+    font-size: 16px;
+  }
+  
+  .edit-profile-button,
+  .change-password-button,
+  .delete-account-button,
+  .logout-button {
+    background-color: rgba(56, 97, 141, 1);
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .edit-profile-button:hover,
+  .change-password-button:hover,
+  .delete-account-button:hover,
+  .logout-button:hover {
+    background-color: rgba(40, 70, 100, 1);
+  }
+  
+  #darkModeToggle,
+  .notifications-select {
+    cursor: pointer;
+  }
+  
+  .dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+  
+  .dark-mode .settings-container {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+  }
+  
+  .delete-account-button {
+    background-color: #e53935;
+  }
+  
+  .delete-account-button:hover {
+    background-color: #b71c1c;
+  }
+  
+  /* Default Light Mode Styles */
+
+
+.settings-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: rgba(56, 97, 141, 1);
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.dark-mode .settings-container {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+
+.dark-mode .settings-option button {
+  background-color: rgba(56, 97, 141, 1);
+  color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+.dark-mode .settings-option button:hover {
+  background-color: rgba(40, 70, 100, 1);
+}
+
+.dark-mode .logout-button {
+  background-color: #e53935;
+}
+
+.dark-mode .logout-button:hover {
+  background-color: #b71c1c;
+}

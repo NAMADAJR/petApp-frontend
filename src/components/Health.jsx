@@ -1,43 +1,10 @@
 import React from "react";
 import "./Health.css";
-// import { ChevronRight } from "./ChevronRight";
-// import { Dividers } from "./Dividers";
-// import { Loudspeaker } from "./Loudspeaker";
-// import { MapMarker } from "./MapMarker";
-// import { MiscIcon } from "./MiscIcon";
-// import { Search } from "./Search";
-// import { StyleLinear } from "./StyleLinear";
-// import { StylesLinear } from "./StylesLinear";
-// import ellipse52 from "./ellipse-5-2.svg";
-// import ellipse5 from "./ellipse-5.svg";
-// import frame2 from "./frame-2.svg";
-// import frame3 from "./frame-3.svg";
-// import frame4 from "./frame-4.svg";
-// import frame5 from "./frame-5.svg";
-// import frame6 from "./frame-6.svg";
-// import frame7 from "./frame-7.svg";
-// import frame8 from "./frame-8.svg";
-// import frame from "./frame.svg";
-// import group4 from "./group-4.png";
-// import iconamoonSettingsFill from "./iconamoon-settings-fill.svg";
-// import image from "./image.svg";
-// import lilly1 from "./lilly-1.png";
-// import logo1 from "./logo-1.png";
-// import mynauiNotificationSolid from "./mynaui-notification-solid.svg";
-// import ouiArrowUp from "./oui-arrow-up.svg";
-// import petPal from "./pet-pal.png";
-// import pulse from "./pulse.svg";
+import { CiCalendar } from "react-icons/ci";
+import { AiOutlineMessage } from "react-icons/ai";
+import { IoLocationOutline } from "react-icons/io5";
+import { GoMegaphone } from "react-icons/go";
 
-// import vector4 from "./vector-4.svg";
-// import vector5 from "./vector-5.svg";
-// import vector6 from "./vector-6.svg";
-// import vector7 from "./vector-7.svg";
-// import vector8 from "./vector-8.svg";
-// import vector9 from "./vector-9.svg";
-// import vector10 from "./vector-10.svg";
-// import vector11 from "./vector-11.svg";
-// import vector12 from "./vector-12.svg";
-// import vector13 from "./vector-13.svg";
 
 export const Health = () => {
   return (
@@ -340,19 +307,15 @@ export const Health = () => {
           <div className="frame-24">
             <div className="frame-9">
               <div className="frame-16">
-                {/* <MiscIcon
-                                    color="gray"
-                                    icon={
-                                        <StyleLinear
-                                            className="icon-instance-node-2"
-                                            color="#38618D"
-                                        />
-                                    }
-                                    size="lg-48px"
+                <CiCalendar
+                                    color="rgba(56, 97, 141, 1)"
+                                   
+                                    size= "2.5rem"
                                     type="round"
-                                /> */}
+                                />
                 <div className="frame-25">
-                  <div className="text-wrapper">Book an Appointment</div>
+                  <a href="/makeAppointment" className="text-wrapper">Book an Appointment</a>
+                  
 
                   <p className="text-wrapper-22">
                     Find a veterinarian and specialization
@@ -360,25 +323,20 @@ export const Health = () => {
                 </div>
               </div>
               {/* 
-                            <ChevronRight className="icon-instance-node" color="#667185" /> */}
+                            <CiCalendar className="icon-instance-node" color="#667185" /> */}
             </div>
 
             {/* <Dividers className="dividers-instance" type="default" /> */}
             <div className="frame-9">
               <div className="frame-16">
-                {/* <MiscIcon
-                                    color="gray"
-                                    icon={
-                                        <StylesLinear
-                                            className="icon-instance-node-2"
-                                            color="#38618D"
-                                        />
-                                    }
-                                    size="lg-48px"
+                <AiOutlineMessage
+                                    color="rgba(56, 97, 141, 1)"
+                                  
+                                    size="2.5rem"
                                     type="round"
-                                /> */}
+                                />
                 <div className="frame-25">
-                  <div className="text-wrapper">Request Consultation</div>
+                  <a href="#" className="text-wrapper">Request Consultation</a>
 
                   <p className="text-wrapper-22">
                     Talk to a specialist veterinarian
@@ -392,19 +350,14 @@ export const Health = () => {
             {/* <Dividers className="dividers-instance" type="default" /> */}
             <div className="frame-9">
               <div className="frame-16">
-                {/* <MiscIcon
-                                    color="gray"
-                                    icon={
-                                        <MapMarker
-                                            className="icon-instance-node-2"
-                                            color="#38618D"
-                                        />
-                                    }
-                                    size="lg-48px"
+                <IoLocationOutline
+                                    color="rgba(56, 97, 141, 1)"
+                                   
+                                    size="2.5rem"
                                     type="round"
-                                /> */}
+                                />
                 <div className="frame-25">
-                  <p className="text-wrapper">Locate a veterinary near you</p>
+                  <a href="#" className="text-wrapper">Locate a veterinary near you</a>
 
                   <div className="text-wrapper-22">
                     Find closest veterinarian services
@@ -418,19 +371,14 @@ export const Health = () => {
             {/* <Dividers className="dividers-instance" type="default" /> */}
             <div className="frame-9">
               <div className="frame-16">
-                {/* <MiscIcon
-                                    color="gray"
-                                    icon={
-                                        <Loudspeaker
-                                            className="icon-instance-node-2"
-                                            color="#38618D"
-                                        />
-                                    }
-                                    size="lg-48px"
+                <GoMegaphone
+                                    color="rgba(56, 97, 141, 1)"
+                                   
+                                    size="2.5rem"
                                     type="round"
-                                /> */}
+                                />
                 <div className="frame-25">
-                  <div className="text-wrapper">Emergency</div>
+                  <a href="#"  className="text-wrapper">Emergency</a>
 
                   <div className="text-wrapper-22">Request immediate help</div>
                 </div>

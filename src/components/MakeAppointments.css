@@ -1,0 +1,117 @@
+/* General container */
+.appointment-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Search bar */
+.search-bar-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.search-bar-container input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgba(56, 97, 141, 1);
+  border-radius: 5px;
+}
+
+.autocomplete-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border: 1px solid rgba(56, 97, 141, 1);
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  z-index: 10;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.autocomplete-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.autocomplete-item:hover {
+  background-color: rgba(56, 97, 141, 0.1);
+}
+
+/* Form styling */
+form label {
+  display: block;
+  margin: 10px 0 5px;
+  color: rgba(56, 97, 141, 1);
+}
+
+form input,
+form select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid rgba(56, 97, 141, 1);
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: rgba(56, 97, 141, 1);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: rgba(56, 97, 141, 0.5);
+  cursor: not-allowed;
+}
+
+
+/* Default Light Mode Styles */
+
+.settings-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: rgba(56, 97, 141, 1);
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.dark-mode .settings-container {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+
+.dark-mode .settings-option button {
+  background-color: rgba(56, 97, 141, 1);
+  color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+.dark-mode .settings-option button:hover {
+  background-color: rgba(40, 70, 100, 1);
+}
+
+.dark-mode .logout-button {
+  background-color: #e53935;
+}
+
+.dark-mode .logout-button:hover {
+  background-color: #b71c1c;
+}

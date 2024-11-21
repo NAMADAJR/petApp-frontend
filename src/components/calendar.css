@@ -1,5 +1,36 @@
-/* Default Light Mode Styles */
+.body{
+    margin: auto;
+    padding: 0%;
+}
 
+
+  
+  .calendar-div1 {
+    width: 90rem; 
+    margin-left: 30%;
+   
+    
+    
+   
+   
+  }
+
+  .react-calendar {
+    width: 120rem; /* Make the calendar fill its container */
+    
+    font-size: 1.5rem; /* Increase font size inside the calendar */
+    
+    
+  }
+  
+ 
+ /* Default Light Mode Styles */
+body {
+  background-color: #ffffff;
+  color: rgba(56, 97, 141, 1);
+  font-family: Arial, sans-serif;
+  transition: all 0.3s ease;
+}
 
 .settings-container {
   max-width: 600px;
@@ -38,45 +69,4 @@
 
 .dark-mode .logout-button:hover {
   background-color: #b71c1c;
-}
-
-
-
-.navbar {
-  display: flex;
-  width: 1450px;
-  padding: 20px 0 20px 0;
-  justify-content: space-between;
-}
-
-.navbar-main{
-  background-color: var(--variable-collection-primary-color); 
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  display: flex;
-  justify-content: center;
-}
-
-.navbar a {
-  text-decoration: none;
-}
-
-.text-wrapper-36 {
-  color: white;
-  font-family: "Instrument Sans-SemiBold", Helvetica;
-  font-size: 24px;
-  font-weight: 600;
-  letter-spacing: 0;
-  line-height: normal;
-  width: fit-content;
-}
-
-
-.text-wrapper-36.active {
-  color: green; /* Color when active */
-}
-
-.text-wrapper-36.pending {
-  color: orange; /* Color when pending */
 }

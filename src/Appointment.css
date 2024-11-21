@@ -167,10 +167,11 @@
 }
 
 .appointments .label {
-  color: var(--grey-700);
+  color: #fff;
   font-family: "Instrument Sans-SemiBold", Helvetica;
   font-size: 10px;
   font-weight: 600;
+  padding: 8px;
   letter-spacing: 0;
   line-height: 14.5px;
   margin-top: -1px;
@@ -927,4 +928,83 @@
   height: 187.99px;
   position: relative;
   width: 212.73px;
+}
+
+/* General Button Styles */
+.label {
+  background-color: rgba(56, 97, 141, 1); /* Primary blue color */
+  color: #fff; /* White text */
+  font-size: 16px; /* Font size */
+  padding: 12px 24px; /* Padding inside the button */
+  border: none; /* Remove default border */
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
+}
+
+/* Hover and Active States */
+.label:hover {
+  background-color: rgba(56, 97, 141, 1); /* Darker blue on hover */
+  transform: scale(1.05); /* Slight scale up effect */
+}
+
+.label:active {
+  background-color: rgba(56, 97, 141, 1); /* Even darker blue when the button is pressed */
+  transform: scale(1); /* Reset scale on click */
+}
+
+/* Focus Styles (for accessibility) */
+.label:focus {
+  outline: 2px solid rgba(134, 218, 168, 1); /* Focus outline for accessibility */
+  outline-offset: 2px; /* Slight offset for focus */
+}
+
+/* Disabled Button Style */
+.label:disabled {
+  background-color: #fff; /* Grey background for disabled state */
+  color: #a1a1a1; /* Light grey text */
+  cursor: not-allowed; /* Cursor change for disabled button */
+}
+
+
+/* Default Light Mode Styles */
+
+
+.settings-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: rgba(56, 97, 141, 1);
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.dark-mode .settings-container {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+
+.dark-mode .settings-option button {
+  background-color: rgba(56, 97, 141, 1);
+  color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+.dark-mode .settings-option button:hover {
+  background-color: rgba(40, 70, 100, 1);
+}
+
+.dark-mode .logout-button {
+  background-color: #e53935;
+}
+
+.dark-mode .logout-button:hover {
+  background-color: #b71c1c;
 }
