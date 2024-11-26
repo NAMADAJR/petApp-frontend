@@ -12,7 +12,7 @@ import { MakeAppointment } from './components/MakeAppointment'
 import { SignUp } from './components/SignUp'
 import { ProfilePage } from './components/ProfilePage'
 import { SettingsPage } from './components/SettingsPage'
-import Appoint from './components/Appoint'
+import {Appoint} from './components/Appoint'
 // import { Appointment } from './components/Appointment'
 
 
