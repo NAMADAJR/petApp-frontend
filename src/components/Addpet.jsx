@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Navbar } from "./Navbar";
 
 export const AddPet = () => {
   const [petDetails, setPetDetails] = useState({
@@ -68,7 +69,10 @@ export const AddPet = () => {
   };
 
   return (
+    <div>
+       <Navbar />
     <div className="bg-[#deefdf] flex flex-row justify-center w-full">
+     
       <div className="bg-[#deefdf] w-[1512px] h-[1489px]">
         <form
           onSubmit={handleSubmit}
@@ -188,6 +192,7 @@ export const AddPet = () => {
           </div>
         </form>
       </div>
+    </div>
     </div>
   );
 };
