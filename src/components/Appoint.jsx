@@ -3,6 +3,7 @@ import { DatePicker, TimePicker, Space, Button } from 'antd'
 import moment from 'moment-timezone'
 import Calendar from './Calendar.jsx'
 import './Appoint.css'
+import { Navbar } from './Navbar.jsx'
 
 export const Appoint = () => {
   const [appointments, setAppointments] = useState([])
@@ -106,6 +107,7 @@ export const Appoint = () => {
 
   return (
     <>
+    <Navbar/>
       <div className='flex justify-center'>
         <div className='w-[1805px] h-auto mt-[80px] flex flex-row align-middle justify-center'>
           <div className='w-full h-full flex flex-row justify-around  '>
@@ -322,4 +324,4 @@ export const Appoint = () => {
     </>
   )
 }
-
+export default  Appoint

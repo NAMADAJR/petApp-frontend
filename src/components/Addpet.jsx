@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Navbar } from "./Navbar";
 
 export const AddPet = () => {
   const [petDetails, setPetDetails] = useState({
@@ -51,27 +52,36 @@ export const AddPet = () => {
     setMessage("");
 
     const token = localStorage.getItem("tokens");
-    const petData = new FormData(); // Use FormData to handle file upload
-    Object.entries({
-      ...petDetails,
-      date_of_birth: petDetails.dob,
-    }).forEach(([key, value]) => {
-      petData.append(key, value);
-    });
+    // const petData = new FormData(); // Use FormData to handle file upload
+    // Object.entries({
+    //   ...petDetails,
+    //   date_of_birth: petDetails.dob,
+    // }).forEach(([key, value]) => {
+    //   petData.append(key, value);
+    // });
 
-    // Check if an image is selected
-    if (petDetails.image) {
-      petData.append("image", petDetails.image);
+    // // Check if an image is selected
+    // if (petDetails.image) {
+    //   petData.append("image", petDetails.image);
+    // }
+    const petData = {
+      "name": "Bubbles",
+      "type": "Cat",
+      "breed": "Golden ",
+      "gender": "Male",
+      "date_of_birth": "2020-05-15"
     }
+    
 
     try {
-      const response = await fetch("/pets", {
+      const response = await fetch(" http://127.0.0.1:7500/pets", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
         },
-        body: petData,
+        body:JSON.stringify(petData),
       });
+      console.log(response)
 
       if (!response.ok) throw new Error("Failed to add pet, please try again");
 
@@ -101,7 +111,10 @@ export const AddPet = () => {
   };
 
   return (
+    <div>
+       <Navbar />
     <div className="bg-[#deefdf] flex flex-row justify-center w-full">
+     
       <div className="bg-[#deefdf] w-[1512px] h-auto pb-10">
         <form
           onSubmit={handleSubmit}
@@ -311,6 +324,7 @@ export const AddPet = () => {
           </div>
         </form>
       </div>
+    </div>
     </div>
   );
 };
