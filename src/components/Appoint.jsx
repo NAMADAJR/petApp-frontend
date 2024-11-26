@@ -5,7 +5,7 @@ import Calendar from './Calendar.jsx'
 import './Appoint.css'
 import { Navbar } from './Navbar.jsx'
 
-const Appoint = () => {
+export const Appoint = () => {
   const [appointments, setAppointments] = useState([])
   const [selectedDate, setSelectedDate] = useState(null)
   const [selectedTime, setSelectedTime] = useState(null)
