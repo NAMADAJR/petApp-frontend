@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Community.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { Navbar } from './Navbar';
 
 export const Community = () => {
   const [posts, setPosts] = useState([]);
@@ -127,6 +128,8 @@ export const Community = () => {
   };
 
   return (
+    <div>
+      <Navbar />
     <div className="community-page">
       {/* Left section for posts */}
       <div className="community-content">
@@ -263,6 +266,7 @@ export const Community = () => {
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 };

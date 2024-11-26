@@ -19,7 +19,7 @@ import Appoint from './components/Appoint'
 const Layout = () => {
   return (
     <>
-      <Navbar />
+     
       <Outlet />
     </>
   )

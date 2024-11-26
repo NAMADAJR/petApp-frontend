@@ -45,7 +45,8 @@ export const Overview = () => {
   console.log(value);
 
   return (
-
+    <div>
+      <Navbar />
     <div className='overview-container'>
 
     <div className='bg-[#ffffff] flex flex-row justify-center w-full'>
@@ -795,6 +796,7 @@ export const Overview = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
     </div>
   )

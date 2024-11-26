@@ -4,11 +4,13 @@ import { CiCalendar } from "react-icons/ci";
 import { AiOutlineMessage } from "react-icons/ai";
 import { IoLocationOutline } from "react-icons/io5";
 import { GoMegaphone } from "react-icons/go";
+import { Navbar } from "./Navbar";
 
 
 export const Health = () => {
   return (
     <div className="health-page-full">
+      <Navbar />
     <div className="health">
       <div className="div">
         <div className="health-overview">

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { Navbar } from "./Navbar";
 
 // Validation Schema
 const LoginSchema = Yup.object().shape({
@@ -51,6 +52,8 @@ export const Login = () => {
   };
 
   return (
+    <>
+    
     <div className="flex h-screen bg-green-200">
       {/* Left Section */}
       <div className="w-1/2 flex items-center justify-center">
@@ -151,6 +154,7 @@ export const Login = () => {
         />
       </div>
     </div>
+    </>
   );
 
 };
