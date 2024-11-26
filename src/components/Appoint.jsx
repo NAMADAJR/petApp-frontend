@@ -107,7 +107,7 @@ const Appoint = () => {
   return (
     <>
       <div className='flex justify-center'>
-        <div className='w-[1800px] h-auto mt-[80px] flex flex-row align-middle justify-center'>
+        <div className='w-[1801px] h-auto mt-[80px] flex flex-row align-middle justify-center'>
           <div className='w-full h-full flex flex-row justify-around  '>
             <div className='h-auto w-[38%] p-[10px] flex justify-start flex-col align-center border-[#38618D]'>
               <div
