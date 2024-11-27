@@ -165,10 +165,11 @@ export const Login = () => {
                   >
                     {isSubmitting ? "Logging in..." : "Log In"}
                   </button>
+                  
                 </div>
 
                 {/* Sign Up Link */}
-                <div className=" absolute top-[385px] left-[130px] text-center text-sm">
+                <div className=" absolute top-[385px] left-[130px] text-center text-sm pt-3">
                   Don't have an account?{" "}
                   <a href="/signup" className="text-blue-600 hover:underline">
                     Sign Up
