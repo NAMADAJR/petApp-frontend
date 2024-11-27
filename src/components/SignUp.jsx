@@ -174,12 +174,7 @@ export const SignUp = () => {
                     className='w-[312px] h-[62px] bg-[#39628e] rounded-lg text-white text-2xl'>
                     {isSubmitting ? 'Creating...' : 'Create account'}
                   </button>
-                  <p className='text-center text-sm mt-[10px]'>
-                    Already have an account?{' '}
-                    <NavLink to='/login' className='text-blue-600 hover:underline'>
-                      Log in
-                    </NavLink>
-                  </p>
+                
                 </div>
 
 
