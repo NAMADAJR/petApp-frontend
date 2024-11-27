@@ -1,16 +1,19 @@
+
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import React, { useState, useEffect } from "react";
 
+
 // Validation Schema
 const LoginSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid email").required("Email is required"),
-  password: Yup.string().required("Password is required"),
-});
+  email: Yup.string().email('Invalid email').required('Email is required'),
+  password: Yup.string().required('Password is required'),
+})
 
 export const Login = () => {
+
   const [showPassword, setShowPassword] = useState(false);
   const [initialEmail, setInitialEmail] = useState(""); // State for the email
   const [isLoading, setIsLoading] = useState(true); // Loading state
@@ -27,20 +30,22 @@ export const Login = () => {
   const handleLogin = (values, { setSubmitting, setErrors }) => {
     setSubmitting(true);
 
-    fetch("https://petapp-backend-abg7.onrender.com/login", {
-      method: "POST",
+
+    fetch('https://petapp-backend-abg7.onrender.com/login', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(values),
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Login failed. Please check your credentials.");
+          throw new Error('Login failed. Please check your credentials.')
         }
-        return response.json();
+        return response.json()
       })
       .then((data) => {
+
         localStorage.setItem("token", data.access_token);
         localStorage.setItem("email", values.email); // Save email in localStorage after successful login
         setTimeout(() => {
@@ -49,9 +54,11 @@ export const Login = () => {
       })
       .catch((error) => {
         setErrors({ password: "Login failed. Please try again." });
+
       })
-      .finally(() => setSubmitting(false));
-  };
+      .finally(() => setSubmitting(false))
+  }
+
 
   if (isLoading) {
     // If still loading, you can render a loading spinner or some other indicator
@@ -115,9 +122,11 @@ export const Login = () => {
                 {/* Forgot Password */}
                 <div className="text-right mb-6">
                   <a href="#" className="text-sm text-blue-600 hover:underline">
+
                     Forgot Password?
                   </a>
                 </div>
+
 
                 {/* Social Login */}
                 <div className="text-center my-4 text-gray-500">Or continue with</div>
@@ -141,9 +150,11 @@ export const Login = () => {
                       className="absolute w-[45px] h-[39px] top-3.5 left-[46px]"
                       alt="Apple Icon"
                       src="/iconapple.png"
+
                     />
                   </button>
                 </div>
+
 
                 {/* Submit Button */}
                 <div className="absolute left-[80px] mb-2 mt-5 w-[314px]">
@@ -163,10 +174,12 @@ export const Login = () => {
                     Sign Up
                   </a>
                 </div>
+
               </Form>
             )}
           </Formik>
         </div>
+
 
         {/* Right Section (Image) */}
         <img
@@ -178,3 +191,4 @@ export const Login = () => {
     </div>
   );
 };
+
