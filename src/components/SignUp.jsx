@@ -1,7 +1,11 @@
-import React from 'react'
-import { Formik, Form, Field } from 'formik'
-import * as Yup from 'yup'
-import { NavLink, useNavigate } from 'react-router-dom'
+
+import React from "react";
+import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
+
+
 
 // Validation Schema
 const SignupSchema = Yup.object().shape({
@@ -24,7 +28,10 @@ const SignupSchema = Yup.object().shape({
 })
 
 export const SignUp = () => {
-  const navigate = useNavigate()
+
+  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = React.useState(false);
+
 
   return (
     <Formik
@@ -45,9 +52,11 @@ export const SignUp = () => {
             return response.json()
           })
           .then((data) => {
-            console.log('Signup successful:', data)
-            localStorage.setItem('email', values.email)
-            navigate('/login')
+
+            console.log("Signup successful:", data);
+            localStorage.setItem("email", values.email);
+            navigate("/");
+
           })
           .catch((error) => {
             console.error('Error during signup:', error)
@@ -56,9 +65,12 @@ export const SignUp = () => {
       }}>
       {({ errors, touched, isSubmitting }) => (
         <Form>
-          <div className='bg-[#86daa8] flex flex-row justify-center w-full h-screen'>
-            <div className='bg-variable-collection-light-green w-[1512px] h-[982px] relative'>
-              <div className='absolute w-[585px] h-[690px] top-[146px] left-[140px] bg-white rounded-[30px] shadow-[0px_1px_3px_#0000001a]'>
+
+          <div className="bg-[#86daa8] flex flex-row justify-center w-full h-[100vh]">
+            <div className="bg-variable-collection-light-green w-[1512px] h-screen relative">
+              <div className="absolute w-[585px] h-[690px] top-[20px] left-[140px] bg-white rounded-[30px] shadow-[0px_1px_3px_#0000001a]">
+                
+
                 {/* Username Field */}
                 <div className='absolute w-[466px] top-48 left-14'>
                   <Field
@@ -89,19 +101,36 @@ export const SignUp = () => {
                 </div>
 
                 {/* Password Field */}
-                <div className='absolute w-[466px] top-[322px] left-14 pt-6'>
-                  <Field
-                    name='password'
-                    type='password'
-                    className='w-full h-[45px] bg-greyish rounded-lg border border-solid border-dark-grey p-3 text-sm text-[#90a0b7] font-semibold'
-                    placeholder='Password'
-                  />
+
+                <div className="absolute w-[466px] top-[322px] left-14 pt-6">
+                  <div className="relative">
+                    <Field
+                      name="password"
+                      type={showPassword ? "text" : "password"}
+                      className="w-full h-[45px] bg-greyish rounded-lg border border-solid border-dark-grey p-3 text-sm text-[#90a0b7] font-semibold"
+                      placeholder="Password"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword((prev) => !prev)}
+                      className="absolute right-3 top-0.5 bg-greyish text-black"
+                    >
+                      {showPassword ? (
+                        <EyeSlashIcon className="h-5 w-5" />
+                      ) : (
+                        <EyeIcon className="h-5 w-5" />
+                      )}
+                    </button>
+                  </div>
+
                   {errors.password && touched.password && (
                     <div className='text-red-500 text-sm mt-0.1'>
                       {errors.password}
                     </div>
                   )}
                 </div>
+
+
 
                 {/* Continue with Section */}
                 <div className='absolute top-[405px] left-20 font-normal text-variable-collection-primary-color text-base pt-7'>
@@ -136,7 +165,9 @@ export const SignUp = () => {
                 </button>
 
                 {/* Submit Button */}
-                <div className='absolute w-[314px] h-[62px] top-[575px] left-[136px]'>
+
+                <div className="absolute w-[314px] h-[62px] top-[545px] left-[136px]">
+
                   <button
                     type='submit'
                     disabled={isSubmitting}
@@ -151,14 +182,26 @@ export const SignUp = () => {
                   </p>
                 </div>
 
-                <div className='absolute top-[126px] left-14 font-semibold text-variable-collection-primary-color text-2xl'>
+
+                {/* Login Link */}
+                <div className="absolute top-[620px] left-[180px] text-center text-sm">
+                  Already have an account?{" "}
+                  <a href="/" className="text-blue-600 hover:underline">
+                    Login
+                  </a>
+                </div>
+
+                <div className="absolute top-[126px] left-14 font-semibold text-variable-collection-primary-color text-2xl">
+
                   Sign Up
                 </div>
               </div>
               <img
-                className='absolute w-[597px] h-[903px] top-[35px] left-[871px] rounded-lg'
-                alt='Rectangle'
-                src='/sign.png'
+
+                className="absolute w-[500px] h-[700px] top-[15px] left-[871px]"
+                alt="Rectangle"
+                src="/sign.png"
+
               />
             </div>
           </div>
