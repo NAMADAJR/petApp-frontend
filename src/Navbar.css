@@ -47,6 +47,7 @@
   width: 1450px;
   padding: 20px 0 20px 0;
   justify-content: space-between;
+  align-items: center;
 }
 
 .navbar-main{
