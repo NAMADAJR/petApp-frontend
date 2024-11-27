@@ -4,7 +4,7 @@ import { Navbar } from './components/Navbar'
 import './App.css'
 import './index.css'
 import { Overview } from './components/Overview'
-import { Health } from './components/Health'
+
 import { Login } from './components/Login'
 import { AddPet } from './components/Addpet'
 import { Community } from './components/Community'
@@ -13,6 +13,7 @@ import { SignUp } from './components/SignUp'
 import { ProfilePage } from './components/ProfilePage'
 import { SettingsPage } from './components/SettingsPage'
 import {Appoint} from './components/Appoint'
+import Health from './components/Health'
 // import { Appointment } from './components/Appointment'
 
 
@@ -55,7 +56,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/overview' element={<Overview />} />
-        <Route path='/health' element={<Health />} />
+        <Route path='/health' element={<Health/>} />
         {/* <Route path='/appointment' element={<Appointment />} /> */}
         <Route path='/community' element={<Community />} />
         <Route path='/appointment' element={<Appoint/>} />
