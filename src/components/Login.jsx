@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 // Validation Schema
 const LoginSchema = Yup.object().shape({
@@ -165,9 +166,9 @@ export const Login = () => {
                   {/* Sign Up Link */}
                   <div className="text-center text-sm">
                     Don't have an account?{" "}
-                    <a href="/signup" className="text-blue-600 hover:underline">
+                    <Link to="/signup" className="text-blue-600 hover:underline">
                       Sign Up
-                    </a>
+                    </Link>
                   </div>
                 </Form>
               )}
