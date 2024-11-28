@@ -21,6 +21,7 @@
     "@fullcalendar/interaction": "^6.1.15",
     "@fullcalendar/react": "^6.1.15",
     "@fullcalendar/timegrid": "^6.1.15",
+    "@heroicons/react": "^2.2.0",
     "@shadcn/ui": "^0.0.4",
     "@syncfusion/ej2-react-schedule": "^27.2.3",
     "antd": "^5.22.2",

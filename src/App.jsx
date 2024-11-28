@@ -12,13 +12,9 @@ import { MakeAppointment } from './components/MakeAppointment'
 import { SignUp } from './components/SignUp'
 import { ProfilePage } from './components/ProfilePage'
 import { SettingsPage } from './components/SettingsPage'
-<<<<<<< HEAD
-import {Appoint} from './components/Appoint'
-import Health from './components/Health'
-=======
 import Appoint from './components/Appoint'
 import ConsultationForm from './components/ConsultationForm'
->>>>>>> 8a96c74 (health and appointment page changes)
+import { Health } from './components/Health'
 // import { Appointment } from './components/Appointment'
 
 

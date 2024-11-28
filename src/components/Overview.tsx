@@ -11,7 +11,6 @@ import "./calendar.css";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
 import { FaTasks } from "react-icons/fa";
-import { Navbar } from "./Navbar";
 import { TaskRow } from "./TaskRow";
 import TaskForm from "./TaskForm";
 type ValuePiece = Date | null;
