@@ -1,18 +1,14 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
-import { randomColor, randomPosition, randomRotation } from '../utils';
+import React from 'react'
+import { motion } from 'framer-motion'
+import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa'
+import { randomColor, randomPosition, randomRotation } from '../utils'
 import { Link } from 'react-router-dom';
-import Confetti from './Confetti';  // Import the Confetti component
 
 export function Community() {
   return (
     <div className="min-h-screen bg-white flex flex-col items-center justify-between p-8 relative overflow-hidden">
-      {/* Confetti animation */}
-      <Confetti /> {/* Display Confetti over the page */}
-
       {/* Navigation */}
-      <nav className="w-full text-center z-10">
+      <nav className="w-full text-center">
         <span className="text-[#40E0D0] text-sm font-medium">HOME</span>
       </nav>
 
@@ -45,19 +41,21 @@ export function Community() {
           COMING SOON
         </h1>
         <p className="text-gray-600 mb-8 max-w-md">
-          We will be celebrating the launch of our new site very soon!
+          We will be celebrating the launch of our new page soon
         </p>
-        <button className="bg-[#070808] text-white px-8 py-2 rounded hover:bg-[#070808] transition-colors">
-            <Link to="/Overview" className="text-white no-underline">
+        <Link to="/Overview" className="text-white no-underline">
+            <button className="bg-[#070808] text-white px-8 py-2 rounded hover:bg-[#070808] transition-colors">
+              
               Back to Overview
-            </Link>
-        </button>
+               
+            </button>
+        </Link>
       </main>
 
       {/* Footer */}
       <footer className="w-full text-center z-10">
         <p className="text-gray-500 text-sm mb-4">
-          © 2024 by "Coming Soon". Proudly created by Moringa School.com
+          © 2023 by "Coming Soon". Proudly created by 
         </p>
         <div className="flex justify-center gap-4">
           <a href="#" className="text-gray-600 hover:text-black">
@@ -72,5 +70,6 @@ export function Community() {
         </div>
       </footer>
     </div>
-  );
+  )
 }
+
