@@ -29,7 +29,7 @@ export const SignUp = () => {
   const navigate = useNavigate();
 
   const handleSignup = (values, { setSubmitting }) => {
-    fetch("/register", {
+    fetch("https://petapp-backend-abg7.onrender.com/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -166,9 +166,9 @@ export const SignUp = () => {
                   {/* Login Link */}
                   <div className="text-center text-sm">
                     Already have an account?{" "}
-                    <a href="/" className="text-blue-600 hover:underline">
+                    <Link to="/" className="text-blue-600 hover:underline">
                       Login
-                    </a>
+                    </Link>
                   </div>
                 </Form>
               )}
