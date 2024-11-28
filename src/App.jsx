@@ -20,10 +20,9 @@ import { Health } from './components/Health'
 
 const Layout = () => {
   return (
-    <>
-     
+    <div>
       <Outlet />
-    </>
+    </div>
   )
 }
 
