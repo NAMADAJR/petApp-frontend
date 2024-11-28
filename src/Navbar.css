@@ -45,7 +45,8 @@
 .navbar {
   display: flex;
   width: 1450px;
-  padding: 20px 0 20px 0;
+  padding: 5px 0 20px 0;
+  align-items: center;
   justify-content: space-between;
 }
 
