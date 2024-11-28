@@ -7,6 +7,7 @@ import { GoMegaphone } from 'react-icons/go'
 import { Navbar } from './Navbar'
 import Healthdashboard from "./Healthdashboard";
 import CircleProgress from "./CircleProgress"
+import { Link } from "react-router-dom";
 
 export const Health = () => {
   const handleButtonClick = () => {
@@ -151,9 +152,9 @@ export const Health = () => {
                     type='round'
                   />
                   <div className='frame-25'>
-                    <a href='/makeAppointment' className='text-wrapper'>
+                    <Link to='/makeAppointment' className='text-wrapper'>
                       Book an Appointment
-                    </a>
+                    </Link>
 
                     <p className='text-wrapper-22'>
                       Find a veterinarian and specialization
@@ -176,9 +177,9 @@ export const Health = () => {
                     type='round'
                   />
                   <div className='frame-25'>
-                    <a href='/consultation' className='text-wrapper'>
+                    <Link to='/consultation' className='text-wrapper'>
                       Request Consultation
-                    </a>
+                    </Link>
 
                     <p className='text-wrapper-22'>
                       Talk to a specialist veterinarian
@@ -186,9 +187,9 @@ export const Health = () => {
                   </div>
                 </div>
 
-                <a href='/consultation' className='h-[80%] w-auto p-0 bg-transparent '>
+                <Link to='/consultation' className='h-[80%] w-auto p-0 bg-transparent '>
                   <img src='./arrow.png' alt='' />
-                </a>
+                </Link>
               </div>
 
               {/* <Dividers className="dividers-instance" type="default" /> */}
@@ -235,9 +236,9 @@ export const Health = () => {
                     type='round'
                   />
                   <div className='frame-25'>
-                    <a href='#' className='text-wrapper'>
+                    <Link to='/community' className='text-wrapper'>
                       Emergency
-                    </a>
+                    </Link>
 
                     <div className='text-wrapper-22'>
                       Request immediate help
@@ -245,9 +246,9 @@ export const Health = () => {
                   </div>
                 </div>
 
-                <a href='#' className='h-[80%] w-auto p-0 bg-transparent '>
+                <Link to="/community" className='h-[80%] w-auto p-0 bg-transparent '>
                   <img src='./arrow.png' alt='' />
-                </a>
+                </Link>
               </div>
             </div>
 
