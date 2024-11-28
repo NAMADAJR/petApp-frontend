@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { IoMdSettings } from "react-icons/io";
+import { PiNotificationFill } from "react-icons/pi";
 import '../Navbar.css';
 
 export function Navbar() {
@@ -117,6 +118,14 @@ export function Navbar() {
             </NavLink>
           </div>
         </div>
+
+        <div className='w-[1px] h-[100px] object-contain flex justify-center mb-30'>
+          <NavLink to='/community'>
+            <PiNotificationFill className='w-10 h-10 mt-8 ml-20 text-white'  />
+          </NavLink>
+        </div>
+    
+
         <div className='w-[60px] h-[10px] object-contain flex justify-center mb-10'>
           <NavLink to='/profilePage'>
             {profileImage ? (
@@ -128,7 +137,7 @@ export function Navbar() {
         </div>
 
         <div className='w-[1px] h-[100px] object-contain flex justify-center mb-30'>
-          <NavLink to='/settingsPage'>
+          <NavLink to='/community'>
             <IoMdSettings className='w-10 h-10 mt-8 mr-40 text-white'  />
           </NavLink>
         </div>

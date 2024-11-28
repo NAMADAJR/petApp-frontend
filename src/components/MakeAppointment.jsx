@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./MakeAppointments.css";
@@ -6,38 +6,9 @@ import SuccessMessage from "./SuccessMessage";
 import FailedMessage from "./FailedMessage";
 
 export const MakeAppointment = () => {
-  const [pets, setPets] = useState([]); // Stores pets fetched from the API
-  const [appointmentStatus, setAppointmentStatus] = useState(null); // null, "success", or "failed"
+  const [appointmentStatus, setAppointmentStatus] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Fetch pets from the API
-  useEffect(() => {
-    const fetchPets = async () => {
-      const token = localStorage.getItem("access_token"); // Retrieve the access token
-
-      try {
-        const response = await fetch("https://petapp-backend-abg7.onrender.com/pets", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
-          },
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          setPets(data);
-        } else {
-          console.error("Failed to fetch pets");
-        }
-      } catch (error) {
-        console.error("Error fetching pets:", error);
-      }
-    };
-    fetchPets();
-  }, []);
-
-  // Sample list of vet clinics
   const vetClinics = [
     { id: 1, name: "Happy Paws Clinic", location: "Downtown" },
     { id: 2, name: "VetCare Center", location: "Uptown" },
@@ -45,11 +16,10 @@ export const MakeAppointment = () => {
     { id: 4, name: "Canine Wellness Hub", location: "Suburb" },
   ];
 
-  // Formik setup
   const formik = useFormik({
     initialValues: {
       pet_id: "",
-      vet: "",
+      location: "",
       type: "Checkup",
       date: "",
       time: "",
@@ -57,30 +27,45 @@ export const MakeAppointment = () => {
       notes: "",
     },
     validationSchema: Yup.object({
-      pet_id: Yup.string().required("Please select a pet"),
-      vet: Yup.string().required("Vet clinic is required"),
+      pet_id: Yup.string().required("Pet ID is required"),
+      location: Yup.string().required("Vet clinic location is required"),
       date: Yup.string().required("Date is required"),
       time: Yup.string().required("Time is required"),
       priority: Yup.string().oneOf(["Low", "Medium", "High"], "Invalid priority"),
       notes: Yup.string().max(500, "Notes must be 500 characters or less"),
     }),
-    onSubmit: async (values) => {
-      const token = localStorage.getItem("access_token"); // Retrieve the access token
+    onSubmit: async (values, { resetForm }) => {
+      const token = localStorage.getItem("access_token");
       setIsSubmitting(true);
 
+      const appointmentDateTime = `${values.date}T${values.time}:00`;
+
+      const appointmentData = {
+        pet_id: values.pet_id,
+        type: values.type,
+        date: appointmentDateTime,
+        location: values.location,
+        status: "Pending",
+        priority: values.priority,
+        notes: values.notes,
+      };
+
       try {
-        const response = await fetch("https://petapp-backend-abg7.onrender.com/Appointment", {
+        const response = await fetch("https://petapp-backend-abg7.onrender.com/Appointments", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify(values),
+          body: JSON.stringify(appointmentData),
         });
 
         if (response.ok) {
           setAppointmentStatus("success");
+          resetForm();
         } else {
+          const errorData = await response.json();
+          console.error("Failed to create appointment:", errorData.message || "Unknown error");
           setAppointmentStatus("failed");
         }
       } catch (error) {
@@ -102,56 +87,53 @@ export const MakeAppointment = () => {
 
       <form onSubmit={formik.handleSubmit}>
         <label>
-          Select Pet:
-          <select
+          Pet ID:
+          <input
+            type="text"
             name="pet_id"
             value={formik.values.pet_id}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-          >
-            <option value="">-- Choose a Pet --</option>
-            {pets.map((pet) => (
-              <option key={pet.id} value={pet.id}>
-                {pet.name}
-              </option>
-            ))}
-          </select>
-          {formik.touched.pet_id && formik.errors.pet_id ? (
+          />
+          {formik.touched.pet_id && formik.errors.pet_id && (
             <div className="error">{formik.errors.pet_id}</div>
-          ) : null}
+          )}
         </label>
         <br />
 
         <label>
           Select Vet Clinic:
           <select
-            name="vet"
-            value={formik.values.vet}
+            name="location"
+            value={formik.values.location}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           >
-            <option value="">-- Choose a Vet --</option>
+            <option value="">-- Choose a Vet Location --</option>
             {vetClinics.map((clinic) => (
-              <option key={clinic.id} value={clinic.name}>
+              <option key={clinic.id} value={clinic.location}>
                 {clinic.name} - {clinic.location}
               </option>
             ))}
           </select>
-          {formik.touched.vet && formik.errors.vet ? (
-            <div className="error">{formik.errors.vet}</div>
-          ) : null}
+          {formik.touched.location && formik.errors.location && (
+            <div className="error">{formik.errors.location}</div>
+          )}
         </label>
         <br />
 
         <label>
           Appointment Type:
-          <input
-            type="text"
+          <select
             name="type"
             value={formik.values.type}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-          />
+          >
+            <option value="Checkup">Checkup</option>
+            <option value="Vaccination">Vaccination</option>
+            <option value="Emergency">Emergency</option>
+          </select>
         </label>
         <br />
 
@@ -164,9 +146,9 @@ export const MakeAppointment = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          {formik.touched.date && formik.errors.date ? (
+          {formik.touched.date && formik.errors.date && (
             <div className="error">{formik.errors.date}</div>
-          ) : null}
+          )}
         </label>
         <br />
 
@@ -179,9 +161,9 @@ export const MakeAppointment = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          {formik.touched.time && formik.errors.time ? (
+          {formik.touched.time && formik.errors.time && (
             <div className="error">{formik.errors.time}</div>
-          ) : null}
+          )}
         </label>
         <br />
 
@@ -208,9 +190,9 @@ export const MakeAppointment = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          {formik.touched.notes && formik.errors.notes ? (
+          {formik.touched.notes && formik.errors.notes && (
             <div className="error">{formik.errors.notes}</div>
-          ) : null}
+          )}
         </label>
         <br />
 

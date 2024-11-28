@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Navbar } from "./Navbar";
+import { useNavigate } from "react-router-dom";
 
 export const AddPet = () => {
   const [petDetails, setPetDetails] = useState({
@@ -6,8 +8,19 @@ export const AddPet = () => {
     type: "",
     breed: "",
     gender: "",
-    dob: "", // Ensure this starts as an empty string
+    dob: "",
+    lastWeightCheck: "",
+    medicalRecords: "",
+    operations: "",
+    foodAllergies: "",
+    lastVetVisit: "",
+    image: null, // New state for image
+    caloriesBurned: "",
+    dailySteps: "",
   });
+  const navigate = useNavigate()
+
+  const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -19,175 +32,307 @@ export const AddPet = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent the default form submission
-    setLoading(true); // Set loading to true when the request starts
-    setMessage(""); // Clear previous messages
+  const handleImageChange = (e) => {
+    setPetDetails((prevDetails) => ({
+      ...prevDetails,
+      image: e.target.files[0],  // Save the image file
+    }));
+  };
 
-    const token = localStorage.getItem("tokens"); // Retrieve token from local storage
+  const handleCheckboxChange = (e) => {
+    setAgreeToTerms(e.target.checked);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!agreeToTerms) {
+      setMessage("Please agree to the Terms and Conditions.");
+      return;
+    }
+
+    setLoading(true);
+    setMessage("");
+
+    const token = localStorage.getItem("token");
+    // const petData = new FormData(); // Use FormData to handle file upload
+    // Object.entries({
+    //   ...petDetails,
+    //   date_of_birth: petDetails.dob,
+    // }).forEach(([key, value]) => {
+    //   petData.append(key, value);
+    // });
+
+    // // Check if an image is selected
+    // if (petDetails.image) {
+    //   petData.append("image", petDetails.image);
+    // }
     const petData = {
-      name: petDetails.name,
-      type: petDetails.type,
-      breed: petDetails.breed,
-      gender: petDetails.gender,
-      date_of_birth: petDetails.dob, // Ensure the date is in YYYY-MM-DD format
-    };
+      "name": "Bubbles",
+      "type": "Cat",
+      "breed": "Golden ",
+      "gender": "Male",
+      "date_of_birth": "2020-05-15"
+    }
+    
 
     try {
-      const response = await fetch("/pets", {
+      // Add a new pet to the database
+      const response = await fetch("https://petapp-backend-abg7.onrender.com/pets", {
         method: "POST",
         headers: {
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, 
         },
-        body: JSON.stringify(petData),
+        body:JSON.stringify(petData),
       });
+      console.log(token);
 
-      // Check if the response is successful
-      if (!response.ok) {
-        throw new Error("Failed to add pet, please try again");
-      }
+      if (!response.ok) throw new Error("Failed to add pet, please try again")
+        else{
+      navigate("/overview");
+        }
+      
 
       const data = await response.json();
-      setMessage("Pet added successfully!"); // Set success message
-      console.log("Response data:", data); // Log the response data
-
-      // Optional: Reset form fields after submission
+      setMessage("Pet added successfully!");
       setPetDetails({
         name: "",
         type: "",
         breed: "",
         gender: "",
         dob: "",
+        lastWeightCheck: "",
+        medicalRecords: "",
+        operations: "",
+        foodAllergies: "",
+        lastVetVisit: "",
+        image: null,
+        caloriesBurned: "",
+        dailySteps: "",
       });
+      setAgreeToTerms(false);
     } catch (error) {
-      setMessage(`Error: ${error.message}`); // Set error message
+      setMessage(`Error: ${error.message}`);
     } finally {
-      setLoading(false); // Set loading to false when the request is complete
+      setLoading(false);
     }
   };
 
   return (
+    <div>
+       <Navbar />
     <div className="bg-[#deefdf] flex flex-row justify-center w-full">
-      <div className="bg-[#deefdf] w-[1512px] h-[1489px]">
+     
+      <div className="bg-[#deefdf] w-[1512px] h-auto pb-10">
         <form
           onSubmit={handleSubmit}
-          className="relative w-[1361px] h-[1344px] top-[68px] left-16 bg-[#ffffff] rounded-[10px] shadow-[0px_1px_3px_#0000001a]"
+          className="relative w-[1361px] mx-auto mt-[68px] bg-[#ffffff] rounded-[10px] shadow-[0px_1px_3px_#0000001a]"
         >
-          <div className="flex flex-col w-[1133px] items-start gap-[33px] absolute top-[72px] left-[67px]">
-            <div className="relative self-stretch mt-[-1.00px] font-sub-heading font-[number:var(--sub-heading-font-weight)] text-[#39628e] text-[length:var(--sub-heading-font-size)] tracking-[var(--sub-heading-letter-spacing)] leading-[var(--sub-heading-line-height)] [font-style:var(--sub-heading-font-style)]">
-              Add Pet Details
-            </div>
+          <div className="flex flex-col w-[1133px] items-start gap-[33px] mx-auto pt-[72px]">
+            <div className="text-[#39628e] text-2xl font-semibold">Add Pet Details</div>
+            
+            {message && <div className="text-red-500">{message}</div>}
 
-            {message && <div className="text-center text-red-500">{message}</div>}
-
-            <div className="flex items-start gap-[173px] relative self-stretch w-full flex-[0_0_auto]">
-              <div className="flex flex-col w-[480px] items-start gap-[37px] relative">
-                <div className="gap-[18px] self-stretch w-full flex flex-col items-start relative flex-[0_0_auto]">
-                  <label className="relative self-stretch mt-[-1.00px] font-heading-2 font-[number:var(--heading-2-font-weight)] text-[#38618d] text-[length:var(--heading-2-font-size)] tracking-[var(--heading-2-letter-spacing)] leading-[var(--heading-2-line-height)] [font-style:var(--heading-2-font-style)]">
-                    Pet’s Name
-                  </label>
+            <div className="flex justify-between w-full">
+              <div className="flex flex-col gap-6 w-[480px]">
+                <label>
+                  Pet’s Name
                   <input
                     type="text"
                     name="name"
                     placeholder="Enter Pet’s Name"
                     value={petDetails.name}
                     onChange={handleChange}
-                    className="flex h-[45px] items-center p-3 relative self-stretch w-full bg-greyish rounded-[10px] border border-solid border-[#b3b3b3] text-[#90a0b7]"
+                    className="w-full p-3 rounded-lg border border-gray-300"
                   />
-                </div>
+                </label>
 
-                <div className="gap-3.5 self-stretch w-full flex flex-col items-start relative flex-[0_0_auto]">
-                  <label className="relative self-stretch mt-[-1.00px] font-heading-2 font-[number:var(--heading-2-font-weight)] text-[#38618d] text-[length:var(--heading-2-font-size)] tracking-[var(--heading-2-letter-spacing)] leading-[var(--heading-2-line-height)] [font-style:var(--heading-2-font-style)]">
-                    Pet’s Breed
-                  </label>
+                <label>
+                  Pet’s Breed
                   <input
                     type="text"
                     name="breed"
                     placeholder="Breed"
                     value={petDetails.breed}
                     onChange={handleChange}
-                    className="flex h-[45px] items-center p-3 relative self-stretch w-full border-dark-grey h-[45px] bg-greyish rounded-lg border border-solid text-purple-fade"
+                    className="w-full p-3 rounded-lg border border-gray-300"
                   />
-                </div>
+                </label>
 
-                <div className="relative self-stretch w-full h-[88px]">
-                  <label className="absolute w-[480px] -top-px left-0 font-heading-2 font-[number:var(--heading-2-font-weight)] text-[#38618d] text-[length:var(--heading-2-font-size)] tracking-[var(--heading-2-letter-spacing)] leading-[var(--heading-2-line-height)] [font-style:var(--heading-2-font-style)]">
-                    Date of Birth
-                  </label>
+                <label>
+                  Date of Birth
                   <input
                     type="date"
                     name="dob"
-                    value={petDetails.dob || ""} // Ensure it's an empty string if dob is undefined
+                    value={petDetails.dob || ""}
                     onChange={handleChange}
-                    className="absolute w-[480px] h-[45px] top-[43px] left-0 bg-greyish rounded-lg border border-solid border-dark-grey"
+                    className="w-full p-3 rounded-lg border border-gray-300"
                   />
-                </div>
+                </label>
+
+                <label>
+                  Upload Pet Image
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="w-full p-3 rounded-lg border border-gray-300"
+                  />
+                </label>
+
+                <label>
+                  Calories Burned
+                  <input
+                    type="text"
+                    name="caloriesBurned"
+                    placeholder="Calories burned"
+                    value={petDetails.caloriesBurned}
+                    onChange={handleChange}
+                    className="w-full p-3 rounded-lg border border-gray-300"
+                  />
+                </label>
+
+                <label>
+                  Daily Steps
+                  <input
+                    type="text"
+                    name="dailySteps"
+                    placeholder="Enter daily steps"
+                    value={petDetails.dailySteps}
+                    onChange={handleChange}
+                    className="w-full p-3 rounded-lg border border-gray-300"
+                  />
+                </label>
               </div>
 
-              <div className="flex flex-col w-[480px] items-start gap-[41px] relative">
-                <div className="gap-[18px] self-stretch w-full flex flex-col items-start relative flex-[0_0_auto]">
-                  <label className="relative self-stretch mt-[-1.00px] font-heading-2 font-[number:var(--heading-2-font-weight)] text-[#38618d] text-[length:var(--heading-2-font-size)] tracking-[var(--heading-2-letter-spacing)] leading-[var(--heading-2-line-height)] [font-style:var(--heading-2-font-style)]">
-                    Pet Type
-                  </label>
+              <div className="flex flex-col gap-6 w-[480px]">
+                <label>
+                  Pet Type
                   <input
                     type="text"
                     name="type"
-                    placeholder="Enter what type of pet it is e.g. cat, dog, rabbit"
+                    placeholder="Enter pet type (e.g., cat, dog, rabbit)"
                     value={petDetails.type}
                     onChange={handleChange}
-                    className="flex h-[45px] items-center px-3.5 py-3 relative self-stretch w-full bg-greyish rounded-lg border border-solid border-dark-grey"
+                    className="w-full p-3 rounded-lg border border-gray-300"
                   />
-                </div>
+                </label>
 
-                <div className="w-[323px] gap-[15px] flex flex-col items-start relative flex-[0_0_auto]">
-                  <label className="relative self-stretch mt-[-1.00px] font-heading-2 font-[number:var(--heading-2-font-weight)] text-[#38618d] text-[length:var(--heading-2-font-size)] tracking-[var(--heading-2-letter-spacing)] leading-[var(--heading-2-line-height)] [font-style:var(--heading-2-font-style)]">
-                    Pet’s Gender
-                  </label>
-                  <div className="flex items-center gap-[71px] relative self-stretch w-full flex-[0_0_auto]">
-                    <label className="inline-flex items-center gap-[22px] relative flex-[0_0_auto]">
+                <label>
+                  Pet’s Gender
+                  <div className="flex gap-4">
+                    <label>
                       <input
                         type="radio"
                         name="gender"
                         value="male"
                         checked={petDetails.gender === "male"}
                         onChange={handleChange}
-                        className="w-5 h-5"
                       />
-                      <span className="relative w-fit font-body font-[number:var(--body-font-weight)] text-variable-collection-primary-color text-[length:var(--body-font-size)] tracking-[var(--body-letter-spacing)] leading-[var(--body-line-height)] [font-style:var(--body-font-style)]">
-                        Male
-                      </span>
+                      Male
                     </label>
-                    <label className="inline-flex items-center gap-[22px] relative flex-[0_0_auto]">
+                    <label>
                       <input
                         type="radio"
                         name="gender"
                         value="female"
                         checked={petDetails.gender === "female"}
                         onChange={handleChange}
-                        className="w-5 h-5"
                       />
-                      <span className="relative w-fit font-body font-[number:var(--body-font-weight)] text-variable-collection-primary-color text-[length:var(--body-font-size)] tracking-[var(--body-letter-spacing)] leading-[var(--body-line-height)] [font-style:var(--body-font-style)]">
-                        Female
-                      </span>
+                      Female
                     </label>
                   </div>
-                </div>
+                </label>
               </div>
             </div>
 
-            <div className="relative self-stretch w-full h-[58px]">
-              <button
-                type="submit"
-                disabled={loading}
-                className="bg-[#84c1ad] text-white font-semibold py-2 px-4 rounded-lg w-full"
-              >
-                {loading ? "Adding Pet..." : "Add Pet"}
-              </button>
+            <div className="text-[#39628e] text-2xl font-semibold mt-10">Add Health Details</div>
+
+            <div className="flex justify-between w-full">
+              <div className="flex flex-col gap-6 w-[480px]">
+                <label>
+                  Last Weight Check
+                  <input
+                    type="text"
+                    name="lastWeightCheck"
+                    placeholder="Enter weight details"
+                    value={petDetails.lastWeightCheck}
+                    onChange={handleChange}
+                    className="w-full p-3 rounded-lg border border-gray-300"
+                  />
+                </label>
+
+                <label>
+                  Medical Records
+                  <input
+                    type="text"
+                    name="medicalRecords"
+                    placeholder="Vaccinations, medications, etc."
+                    value={petDetails.medicalRecords}
+                    onChange={handleChange}
+                    className="w-full p-3 rounded-lg border border-gray-300"
+                  />
+                </label>
+              </div>
+
+              <div className="flex flex-col gap-6 w-[480px]">
+                <label>
+                  Operation/Major Procedures
+                  <input
+                    type="text"
+                    name="operations"
+                    placeholder="Enter operations/procedures"
+                    value={petDetails.operations}
+                    onChange={handleChange}
+                    className="w-full p-3 rounded-lg border border-gray-300"
+                  />
+                </label>
+
+                <label>
+                  Food Allergies
+                  <input
+                    type="text"
+                    name="foodAllergies"
+                    placeholder="Enter food allergies"
+                    value={petDetails.foodAllergies}
+                    onChange={handleChange}
+                    className="w-full p-3 rounded-lg border border-gray-300"
+                  />
+                </label>
+
+                <label>
+                  Last Vet Visit
+                  <input
+                    type="date"
+                    name="lastVetVisit"
+                    value={petDetails.lastVetVisit}
+                    onChange={handleChange}
+                    className="w-full p-3 rounded-lg border border-gray-300"
+                  />
+                </label>
+              </div>
             </div>
+
+            <label className="flex items-center gap-2 mt-8">
+              <input
+                type="checkbox"
+                checked={agreeToTerms}
+                onChange={handleCheckboxChange}
+              />
+              I agree to Terms and Conditions
+            </label>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="bg-[#84c1ad] text-white font-semibold py-3 px-8 rounded-lg mt-6 w-[200px] text-center"
+            >
+              {loading ? "Adding Pet..." : "Add Pet"}
+            </button>
           </div>
         </form>
       </div>
+    </div>
     </div>
   );
 };
