@@ -49,6 +49,7 @@ export function MissedAppointments({ appointments, onReschedule, onDelete }) {
                 <div className="text-sm text-red-500">{appointment.time}</div>
               </div>
             </div>
+            
             <div className="flex items-center space-x-2">
               <Button
                 onClick={() => handleReschedule(appointment.id)}
@@ -69,6 +70,7 @@ export function MissedAppointments({ appointments, onReschedule, onDelete }) {
               </Button>
             </div>
           </div>
+          
         ))}
         {missedAppointments.length === 0 && (
           <div className="text-center text-gray-500 py-4">
