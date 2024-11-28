@@ -1,14 +1,18 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa'
-import { randomColor, randomPosition, randomRotation } from '../utils'
+import React from 'react';
+import { motion } from 'framer-motion';
+import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { randomColor, randomPosition, randomRotation } from '../utils';
 import { Link } from 'react-router-dom';
+import Confetti from './Confetti';  // Import the Confetti component
 
 export function Community() {
   return (
     <div className="min-h-screen bg-white flex flex-col items-center justify-between p-8 relative overflow-hidden">
+      {/* Confetti animation */}
+      <Confetti /> {/* Display Confetti over the page */}
+
       {/* Navigation */}
-      <nav className="w-full text-center">
+      <nav className="w-full text-center z-10">
         <span className="text-[#40E0D0] text-sm font-medium">HOME</span>
       </nav>
 
@@ -47,13 +51,13 @@ export function Community() {
             <Link to="/Overview" className="text-white no-underline">
               Back to Overview
             </Link>
-</button>
+        </button>
       </main>
 
       {/* Footer */}
       <footer className="w-full text-center z-10">
         <p className="text-gray-500 text-sm mb-4">
-          © 2023 by "Coming Soon". Proudly created with WIX.com
+          © 2024 by "Coming Soon". Proudly created by Moringa School.com
         </p>
         <div className="flex justify-center gap-4">
           <a href="#" className="text-gray-600 hover:text-black">
@@ -68,6 +72,5 @@ export function Community() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
-

@@ -51,7 +51,7 @@ export const MakeAppointment = () => {
       };
 
       try {
-        const response = await fetch("http://127.0.0.1:7500/Appointment", {
+        const response = await fetch("https://petapp-backend-abg7.onrender.com/Appointments", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
