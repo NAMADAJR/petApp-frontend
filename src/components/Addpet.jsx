@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Navbar } from "./Navbar";
+import { useNavigate } from "react-router-dom";
 
 export const AddPet = () => {
   const [petDetails, setPetDetails] = useState({
@@ -17,6 +18,7 @@ export const AddPet = () => {
     caloriesBurned: "",
     dailySteps: "",
   });
+  const navigate = useNavigate()
 
   const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -51,7 +53,7 @@ export const AddPet = () => {
     setLoading(true);
     setMessage("");
 
-    const token = localStorage.getItem("tokens");
+    const token = localStorage.getItem("token");
     // const petData = new FormData(); // Use FormData to handle file upload
     // Object.entries({
     //   ...petDetails,
@@ -74,16 +76,22 @@ export const AddPet = () => {
     
 
     try {
-      const response = await fetch(" http://127.0.0.1:7500/pets", {
+      // Add a new pet to the database
+      const response = await fetch("https://petapp-backend-abg7.onrender.com/pets", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
         },
         body:JSON.stringify(petData),
       });
-      console.log(response)
+      console.log(token);
 
-      if (!response.ok) throw new Error("Failed to add pet, please try again");
+      if (!response.ok) throw new Error("Failed to add pet, please try again")
+        else{
+      navigate("/overview");
+        }
+      
 
       const data = await response.json();
       setMessage("Pet added successfully!");
