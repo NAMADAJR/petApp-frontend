@@ -77,7 +77,7 @@ export const AddPet = () => {
 
     try {
       // Add a new pet to the database
-      const response = await fetch(" http://127.0.0.1:5000/pets", {
+      const response = await fetch("https://petapp-backend-abg7.onrender.com/pets", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
