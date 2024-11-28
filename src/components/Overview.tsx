@@ -1,12 +1,16 @@
-import React, { useState } from "react";
-import '../index.css'
+import { useState } from 'react';
+import Calendar from 'react-calendar';
+import './overview.css'
+// import './calendar.css';
+import 'react-calendar/dist/Calendar.css'; 
+import { Navbar } from './Navbar';
+
 
 import "./overview.css";
 import "./calendar.css";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
 import { FaTasks } from "react-icons/fa";
-import { Navbar } from "./Navbar";
 import { TaskRow } from "./TaskRow";
 import TaskForm from "./TaskForm";
 type ValuePiece = Date | null;

@@ -4,9 +4,9 @@
 
 /* Community */
 :root {
-  --dark-grey: rgba(179, 179, 179, 1);
-  --variable-collection-faded-blue: rgba(56, 97, 141, 1);
-  --variable-collection-light-green:rgba(56, 97, 141, 1);
+  --dark-grey: #b3b3b3;
+  --variable-collection-faded-blue: #38618d;
+  --variable-collection-light-green:#38618d;
   --variable-collection-primary-color: rgba(56, 97, 141, 1);
   --white: rgba(255, 255, 255, 1);
 }
@@ -22,7 +22,7 @@
 :root {
   --dark-grey: rgba(179, 179, 179, 1);
   --greyish: rgba(248, 248, 248, 1);
-  --variable-collection-light-green: rgba(134, 218, 168, 1);
+  --variable-collection-light-green: #86daa8;
   --variable-collection-primary-color: rgba(56, 97, 141, 1);
 }
 
@@ -37,8 +37,8 @@
   --dark-grey: rgba(179, 179, 179, 1);
   --greyish: rgba(248, 248, 248, 1);
   --purple-fade: rgba(144, 160, 183, 1);
-  --variable-collection-light-green: rgba(134, 218, 168, 1);
-  --variable-collection-primary-color: rgba(56, 97, 141, 1);
+  --variable-collection-light-green: #86daa8;
+  --variable-collection-primary-color: #38618d;
 }
 
 /* AddPet */

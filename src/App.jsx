@@ -12,8 +12,9 @@ import { MakeAppointment } from './components/MakeAppointment'
 import { SignUp } from './components/SignUp'
 import { ProfilePage } from './components/ProfilePage'
 import { SettingsPage } from './components/SettingsPage'
-import {Appoint} from './components/Appoint'
-import Health from './components/Health'
+import Appoint from './components/Appoint'
+import ConsultationForm from './components/ConsultationForm'
+import { Health } from './components/Health'
 // import { Appointment } from './components/Appointment'
 
 
@@ -56,8 +57,8 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/overview' element={<Overview />} />
-        <Route path='/health' element={<Health/>} />
-        {/* <Route path='/appointment' element={<Appointment />} /> */}
+        <Route path='/health' element={<Health />} />
+        <Route path='/consultation' element={<ConsultationForm/>} />
         <Route path='/community' element={<Community />} />
         <Route path='/appointment' element={<Appoint/>} />
         <Route path='/addpet' element={<AddPet />} />
