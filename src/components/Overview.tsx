@@ -54,7 +54,7 @@ export const Overview = () => {
               <img
                 className="w-[68px] h-[68px] top-2 left-[21px] absolute object-cover"
                 alt="Image"
-                src="public/Step_Activity Icon.png"
+                src="/Step_Activity Icon.png"
               />
 
               <div className="absolute top-[33px] left-[117px] font-heading-2 font-[number:var(--heading-2-font-weight)] text-variable-collection-primary-color text-[length:var(--heading-2-font-size)] tracking-[var(--heading-2-letter-spacing)] leading-[var(--heading-2-line-height)] [font-style:var(--heading-2-font-style)] ">
@@ -264,7 +264,7 @@ export const Overview = () => {
                 <img
                   className="w-[111px] h-[107px] top-0 left-0 absolute object-cover"
                   alt="Image"
-                  src="public/Weight Icon.png"
+                  src="/Weight Icon.png"
                 />
               </div>
             </div>
@@ -290,7 +290,7 @@ export const Overview = () => {
                 <img
                   className="w-[72px] h-[72px] top-3.5 left-6 absolute object-cover"
                   alt="Image"
-                  src="public/Feeding Icon.png"
+                  src="/Feeding Icon.png"
                 />
 
                 <div className="absolute top-[105px] left-[88px] [font-family:'Instrument_Sans-SemiBold',Helvetica] font-semibold text-variable-collection-primary-color text-base tracking-[0] leading-[normal]">
